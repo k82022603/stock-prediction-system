@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stock.mapper.StockMapper">
+
+    <resultMap id="stockResultMap" type="com.stock.model.Stock">
+        <id property="id" column="id"/>
+        <result property="stockCode" column="stock_code"/>
+        <result property="stockName" column="stock_name"/>
+        <result property="market" column="market"/>
+        <result property="sector" column="sector"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="stockResultMap">
+        SELECT id, stock_code, stock_name, market, sector, created_at, updated_at
+        FROM stocks
+        ORDER BY stock_code
+    </select>
+
+    <select id="findById" resultMap="stockResultMap">
+        SELECT id, stock_code, stock_name, market, sector, created_at, updated_at
+        FROM stocks
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByStockCode" resultMap="stockResultMap">
+        SELECT id, stock_code, stock_name, market, sector, created_at, updated_at
+        FROM stocks
+        WHERE stock_code = #{stockCode}
+    </select>
+
+    <insert id="insert" parameterType="com.stock.model.Stock" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO stocks (stock_code, stock_name, market, sector, created_at, updated_at)
+        VALUES (#{stockCode}, #{stockName}, #{market}, #{sector}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update" parameterType="com.stock.model.Stock">
+        UPDATE stocks
+        SET stock_name = #{stockName},
+            market = #{market},
+            sector = #{sector},
+            updated_at = CURRENT_TIMESTAMP
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM stocks WHERE id = #{id}
+    </delete>
+
+</mapper>

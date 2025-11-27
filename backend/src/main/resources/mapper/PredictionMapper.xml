@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stock.mapper.PredictionMapper">
+
+    <resultMap id="predictionResultMap" type="com.stock.model.Prediction">
+        <id property="id" column="id"/>
+        <result property="stockId" column="stock_id"/>
+        <result property="predictionDate" column="prediction_date"/>
+        <result property="targetDate" column="target_date"/>
+        <result property="predictedPrice" column="predicted_price"/>
+        <result property="confidenceLevel" column="confidence_level"/>
+        <result property="predictionType" column="prediction_type"/>
+        <result property="modelVersion" column="model_version"/>
+        <result property="createdAt" column="created_at"/>
+        <association property="stock" javaType="com.stock.model.Stock">
+            <id property="id" column="stock_id"/>
+            <result property="stockCode" column="stock_code"/>
+            <result property="stockName" column="stock_name"/>
+            <result property="market" column="market"/>
+            <result property="sector" column="sector"/>
+        </association>
+    </resultMap>
+
+    <select id="findAll" resultMap="predictionResultMap">
+        SELECT p.id, p.stock_id, p.prediction_date, p.target_date,
+               p.predicted_price, p.confidence_level, p.prediction_type,
+               p.model_version, p.created_at,
+               s.stock_code, s.stock_name, s.market, s.sector
+        FROM predictions p
+        INNER JOIN stocks s ON p.stock_id = s.id
+        ORDER BY p.created_at DESC
+    </select>
+
+    <select id="findByTargetDate" resultMap="predictionResultMap">
+        SELECT p.id, p.stock_id, p.prediction_date, p.target_date,
+               p.predicted_price, p.confidence_level, p.prediction_type,
+               p.model_version, p.created_at,
+               s.stock_code, s.stock_name, s.market, s.sector
+        FROM predictions p
+        INNER JOIN stocks s ON p.stock_id = s.id
+        WHERE p.target_date = #{targetDate}
+        ORDER BY p.confidence_level DESC
+    </select>
+
+    <select id="findByStockIdAndTargetDate" resultMap="predictionResultMap">
+        SELECT p.id, p.stock_id, p.prediction_date, p.target_date,
+               p.predicted_price, p.confidence_level, p.prediction_type,
+               p.model_version, p.created_at,
+               s.stock_code, s.stock_name, s.market, s.sector
+        FROM predictions p
+        INNER JOIN stocks s ON p.stock_id = s.id
+        WHERE p.stock_id = #{stockId}
+        AND p.target_date = #{targetDate}
+        ORDER BY p.confidence_level DESC
+    </select>
+
+    <insert id="insert" parameterType="com.stock.model.Prediction" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO predictions (stock_id, prediction_date, target_date, predicted_price,
+                                confidence_level, prediction_type, model_version, created_at)
+        VALUES (#{stockId}, #{predictionDate}, #{targetDate}, #{predictedPrice},
+                #{confidenceLevel}, #{predictionType}, #{modelVersion}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update" parameterType="com.stock.model.Prediction">
+        UPDATE predictions
+        SET predicted_price = #{predictedPrice},
+            confidence_level = #{confidenceLevel},
+            prediction_type = #{predictionType},
+            model_version = #{modelVersion}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM predictions WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stock.mapper.StockPriceMapper">
+
+    <resultMap id="stockPriceResultMap" type="com.stock.model.StockPrice">
+        <id property="id" column="id"/>
+        <result property="stockId" column="stock_id"/>
+        <result property="tradeDate" column="trade_date"/>
+        <result property="openPrice" column="open_price"/>
+        <result property="highPrice" column="high_price"/>
+        <result property="lowPrice" column="low_price"/>
+        <result property="closePrice" column="close_price"/>
+        <result property="volume" column="volume"/>
+        <result property="tradingValue" column="trading_value"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="stockPriceResultMap">
+        SELECT id, stock_id, trade_date, open_price, high_price, low_price,
+               close_price, volume, trading_value, created_at
+        FROM stock_prices
+        ORDER BY trade_date DESC
+    </select>
+
+    <select id="findByStockId" resultMap="stockPriceResultMap">
+        SELECT id, stock_id, trade_date, open_price, high_price, low_price,
+               close_price, volume, trading_value, created_at
+        FROM stock_prices
+        WHERE stock_id = #{stockId}
+        ORDER BY trade_date DESC
+    </select>
+
+    <select id="findRecentPrices" resultMap="stockPriceResultMap">
+        SELECT id, stock_id, trade_date, open_price, high_price, low_price,
+               close_price, volume, trading_value, created_at
+        FROM stock_prices
+        WHERE stock_id = #{stockId}
+        AND trade_date &gt;= #{startDate}
+        ORDER BY trade_date DESC
+    </select>
+
+    <select id="findLatestByStockId" resultMap="stockPriceResultMap">
+        SELECT id, stock_id, trade_date, open_price, high_price, low_price,
+               close_price, volume, trading_value, created_at
+        FROM stock_prices
+        WHERE stock_id = #{stockId}
+        ORDER BY trade_date DESC
+        LIMIT 1
+    </select>
+
+    <insert id="insert" parameterType="com.stock.model.StockPrice" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO stock_prices (stock_id, trade_date, open_price, high_price, low_price,
+                                 close_price, volume, trading_value, created_at)
+        VALUES (#{stockId}, #{tradeDate}, #{openPrice}, #{highPrice}, #{lowPrice},
+                #{closePrice}, #{volume}, #{tradingValue}, CURRENT_TIMESTAMP)
+    </insert>
+
+    <update id="update" parameterType="com.stock.model.StockPrice">
+        UPDATE stock_prices
+        SET open_price = #{openPrice},
+            high_price = #{highPrice},
+            low_price = #{lowPrice},
+            close_price = #{closePrice},
+            volume = #{volume},
+            trading_value = #{tradingValue}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM stock_prices WHERE id = #{id}
+    </delete>
+
+</mapper>

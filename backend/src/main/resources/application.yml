@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: stock-prediction-system
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/stock_prediction
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# MyBatis Configuration
+mybatis:
+  type-aliases-package: com.stock.model
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    cache-enabled: true
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    com.stock: DEBUG
+    com.stock.mapper: DEBUG
