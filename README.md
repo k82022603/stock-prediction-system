@@ -13,7 +13,7 @@ git clone https://github.com/k82022603/stock-prediction-system.git
 cd stock-prediction-system
 ```
 
-자세한 사항은 [QUICKSTART.md](QUICKSTART.md)와 [GITHUB.md](GITHUB.md)를 참조하세요.
+자세한 사항은 [QUICKSTART.md](QUICKSTART.md), [GITHUB.md](GITHUB.md), [OPERATIONS.md](OPERATIONS.md)를 참조하세요.
 
 ## 기술 스택
 
