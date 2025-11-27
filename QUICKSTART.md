@@ -1,5 +1,25 @@
 # 빠른 시작 가이드
 
+## GitHub에서 프로젝트 받기
+
+### 1. 프로젝트 클론
+
+```bash
+# HTTPS 방식 (추천)
+git clone https://github.com/k82022603/stock-prediction-system.git
+
+# 프로젝트 디렉토리로 이동
+cd stock-prediction-system
+```
+
+### 2. 다음 단계
+
+클론한 후 아래 단계를 따라 프로젝트를 실행하세요.
+
+더 자세한 Git 사용법은 [GITHUB.md](GITHUB.md)를 참조하세요.
+
+---
+
 ## 5분 안에 시작하기
 
 ### 1단계: PostgreSQL 설정 (2분)

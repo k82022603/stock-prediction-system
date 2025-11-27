@@ -2,6 +2,19 @@
 
 React + Spring Boot + MyBatis + PostgreSQL 기반의 AI 주식 예측 시스템입니다.
 
+**GitHub 저장소:** https://github.com/k82022603/stock-prediction-system
+
+## 빠른 시작
+
+### 프로젝트 클론
+
+```bash
+git clone https://github.com/k82022603/stock-prediction-system.git
+cd stock-prediction-system
+```
+
+자세한 사항은 [QUICKSTART.md](QUICKSTART.md)와 [GITHUB.md](GITHUB.md)를 참조하세요.
+
 ## 기술 스택
 
 ### 백엔드
