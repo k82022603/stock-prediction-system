@@ -42,6 +42,21 @@ cd stock-prediction-system
 4. **신뢰도 분석**: 예측의 신뢰도 수치 제공
 5. **실시간 데이터 시각화**: 예측 데이터의 시각적 표현
 
+
+
+## AI 개발 방법론 및 가이드
+
+이 프로젝트는 AI를 활용한 바이브 코딩(Vibe Coding)으로 개발되었습니다.
+
+### 방법론 문서
+- [AI_METHODOLOGY_PART1.md](AI_METHODOLOGY_PART1.md) - 전통적 개발 방법론의 진화
+- [AI_VIBE_CODING_GUIDE.md](AI_VIBE_CODING_GUIDE.md) - 바이브 코딩 실전 가이드
+- [CLAUDE.md](CLAUDE.md) - Claude Code 바이브 코딩 경험
+
+### 개발 및 운영 가이드
+- [GITHUB.md](GITHUB.md) - Git/GitHub 사용법
+- [OPERATIONS.md](OPERATIONS.md) - 시스템 운영 매뉴얼
+
 ## 프로젝트 구조
 
 ```
