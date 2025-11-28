@@ -48,9 +48,15 @@ cd stock-prediction-system
 
 이 프로젝트는 AI를 활용한 바이브 코딩(Vibe Coding)으로 개발되었습니다.
 
-### 방법론 문서
+### 방법론 문서 (3부작)
 - [AI_METHODOLOGY_PART1.md](AI_METHODOLOGY_PART1.md) - 전통적 개발 방법론의 진화
-- [AI_VIBE_CODING_GUIDE.md](AI_VIBE_CODING_GUIDE.md) - 바이브 코딩 실전 가이드
+- [AI_METHODOLOGY_PART2.md](AI_METHODOLOGY_PART2.md) - 실전 AI 개발: 프로젝트 라이프사이클
+- [AI_METHODOLOGY_PART3.md](AI_METHODOLOGY_PART3.md) - 팀 협업과 조직 차원의 AI 도입
+
+### 종합 가이드
+- [AI_DEVELOPMENT_METHODOLOGY.md](AI_DEVELOPMENT_METHODOLOGY.md) - AI 시대의 개발 방법론 종합
+- [AI_DEVOPS_ALM.md](AI_DEVOPS_ALM.md) - AI 시대의 DevOps와 ALM
+- [VIBE_CODING_GUIDE.md](VIBE_CODING_GUIDE.md) - 바이브 코딩 실전 가이드
 - [CLAUDE.md](CLAUDE.md) - Claude Code 바이브 코딩 경험
 
 ### 개발 및 운영 가이드
